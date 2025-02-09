@@ -1,0 +1,11 @@
+{
+  "account_confirmation": {
+    "subject": "Bienvenue ! Confirmez votre email pour accéder à la plateforme",
+    "text_1": "Salut {name},",
+    "text_2": "Veuillez cliquer ci-dessous pour confirmer votre email",
+    "text_3": "Si vous n'avez pas demandé cet e-mail, vous pouvez l'ignorer en toute sécurité.",
+    "actions": {
+      "confirm": "Confirmer"
+    }
+  }
+}

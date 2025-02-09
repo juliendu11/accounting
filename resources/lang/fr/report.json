@@ -1,0 +1,13 @@
+{
+  "header": {
+    "month": "Mois",
+    "incomes": "Revenus",
+    "expenses": "Dépenses",
+    "monthly_balance": "Solde du mois",
+    "treasury": "Trésorerie"
+  },
+  "footer": {
+    "totals": "Totaux",
+    "yearly_balance": "Solde de l'année"
+  }
+}

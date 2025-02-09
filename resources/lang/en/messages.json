@@ -1,0 +1,12 @@
+{
+  "unconfirmed_account_error": "Your account has not been confirmed, the link has been sent to you by email",
+  "login_success": "Connection successful",
+  "create_account_success": "Your account has been created, a confirmation email has been sent to you",
+  "account_confirmed_success": "Your account has been confirmed, you can now log in",
+  "user_not_exist_error": "This user does not exist",
+  "transaction_not_found_error": "Transaction not found",
+  "transaction_document_not_found_error": "Document not found",
+  "category_not_found_error": "Category not found",
+  "referent_delete_linked_to_transaction_error": "This referent is linked to a transaction, you cannot delete it",
+  "referent_not_found": "Referent not found"
+}

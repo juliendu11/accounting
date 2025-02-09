@@ -1,0 +1,10 @@
+{
+  "account_confirmation": {
+    "subject": "Welcome ! Confirm your email to access the platform",
+    "text_1": "Hey {name},",
+    "text_2": "Please click below to confirm your email.",
+    "actions": {
+      "confirm": "Confirm"
+    }
+  }
+}

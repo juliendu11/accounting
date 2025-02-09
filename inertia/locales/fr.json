@@ -1,0 +1,197 @@
+{
+  "form": {
+    "email": "Courriel",
+    "password": "Mot de passe",
+    "username": "Nom d'utilisateur",
+    "name": "Nom",
+    "contribution": "Côtisation et impôts",
+    "treasury": "Trésorerie"
+  },
+  "login_page": {
+    "title": "Connexion",
+    "form": {
+      "actions": {
+        "submit": "Se connecter",
+        "create_an_account": "Créer un compte"
+      }
+    }
+  },
+  "confirm_page": {
+    "title": "Confirmation",
+    "state": {
+      "loading": "Please wait..."
+    }
+  },
+  "register_page": {
+    "title": "Création de compte",
+    "form": {
+      "actions": {
+        "submit": "Créer un compte",
+        "login": "Aller à la connexion"
+      }
+    }
+  },
+  "home_page": {
+    "title": "Accueil",
+    "sub_title_1": "Mouvements",
+    "sub_title_2": "Taxes",
+    "sub_title_3": "Entreprise",
+    "section": {
+      "date": {
+        "filters": {
+          "title": "Liste de filtres rapide pour"
+        },
+        "actions": {
+          "generate_report": "Générer un rapport pour cette année"
+        }
+      },
+      "turnover": {
+        "title": "Chiffre d'affaires"
+      },
+      "profit": {
+        "title": "Bénéfices",
+        "earnings": "{amount} de gains",
+        "expenses": "{amount} de dépenses"
+      },
+      "vat_due": {
+        "title": "Montant TVA dû"
+      },
+      "vat_recovered": {
+        "title": "Montant TVA à récupérer"
+      },
+      "profit_after_salary": {
+        "title": "Bénéfice après salaire",
+        "profits": "{amount} de bénéfices",
+        "salaries": "{amount} de salaires"
+      },
+      "treasury": {
+        "title": "Trésorie (jusqu'au {date})",
+        "base_amount": "Base: {amount}",
+        "earning_amount": "Gains: {amount}",
+        "losses_amount": "Pertes: {amount}",
+        "actions": {
+          "including_taxes_toggle": "Inclure les taxes"
+        }
+      }
+    },
+    "table": {
+      "actions": {
+        "delete": "Supprimer",
+        "update": "Modifier",
+        "open_file": "Ouvrir les fichiers"
+      },
+      "confirm_delete": {
+        "message": "Cette transaction sera définitivement supprimée",
+        "actions": {
+          "confirm": "Supprimer cette transaction"
+        }
+      },
+      "recipe": {
+        "title": "Recettes"
+      },
+      "expense": {
+        "title": "Dépenses"
+      },
+      "salary": {
+        "title": "Salaires"
+      }
+    }
+  },
+  "categories_page": {
+    "title": "Catégories"
+  },
+  "create_category_page": {
+    "title": "Création de catégorie"
+  },
+  "referents_page": {
+    "title": "Reférents"
+  },
+  "create_referent_page": {
+    "title": "Création de référent"
+  },
+  "create_transaction_page": {
+    "title": "Création d'une transaction"
+  },
+  "tools_page": {
+    "title": "Outils"
+  },
+  "stats_page": {
+    "title": "Statistiques",
+    "section": {
+      "filters": {
+        "date": {
+          "title": "Année de filtrage"
+        }
+      },
+      "charts": {
+        "overview": {
+          "title": "Vue d'ensemble"
+        },
+        "treasury": {
+          "title": "Évolution de la trésorerie"
+        },
+        "turnover": {
+          "title": "Évolution du chiffre d'affaires"
+        },
+        "expenses_sharing_categories": {
+          "title": "Répartition des dépenses (catégories)"
+        },
+        "expenses_sharing_referents": {
+          "title": "Répartition des dépenses (référents)"
+        },
+        "recipes_sharing_referents": {
+          "title": "Répartition des recettes (référents)"
+        },
+        "recipes_sharing_categories": {
+          "title": "Répartition des recettes (catégories)"
+        },
+        "recipes_expenses_ratio": {
+          "title": "Ratio recettes/dépenses"
+        }
+      }
+    }
+  },
+  "404_page": {
+    "title": "404",
+    "text_1": "Page introuvable",
+    "text_2": "Cette page n'existe pas.",
+    "actions": {
+      "home": "Go to home"
+    }
+  },
+  "label": {
+    "date": "Date",
+    "close": "Fermer",
+    "add": "Ajouter",
+    "cancel": "Annuler",
+    "exit": "Quitter",
+    "clear_selected_dates": "Déselectionner dates",
+    "loading": "Veuillez patienter..."
+  },
+  "unit": {
+    "quarter": "Trimestre {value}",
+    "date": "DD/MM/YYYY"
+  },
+  "menu": {
+    "home": "Accueil",
+    "categories": "Catégories",
+    "referents": "Réferents",
+    "logout": "Déconnexion",
+    "light_theme": "Clair",
+    "dark_theme": "Sombre",
+    "account": "Compte",
+    "tools": "Outils",
+    "stats": "Statistiques"
+  },
+  "language": {
+    "fr": "Français",
+    "en": "Anglais"
+  },
+  "dictionary": {
+    "expenses": "Dépenses",
+    "recipes": "Recettes",
+    "salaries": "Salaires",
+    "treasury": "Trésorerie",
+    "turnover": "Chiffre d'affaires"
+  }
+}

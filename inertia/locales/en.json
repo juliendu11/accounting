@@ -1,0 +1,196 @@
+{
+  "form": {
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "name": "Name",
+    "treasury": "Treasury"
+  },
+  "login_page": {
+    "title": "Login",
+    "form": {
+      "actions": {
+        "submit": "Login",
+        "create_an_account": "Create an account"
+      }
+    }
+  },
+  "confirm_page": {
+    "title": "Confirm",
+    "state": {
+      "loading": "Veuillez patienter..."
+    }
+  },
+  "register_page": {
+    "title": "Register",
+    "form": {
+      "actions": {
+        "submit": "Create an account",
+        "login": "Go to login"
+      }
+    }
+  },
+  "home_page": {
+    "title": "Home",
+    "sub_title_1": "Movements",
+    "sub_title_2": "Taxes",
+    "sub_title_3": "Business",
+    "section": {
+      "date": {
+        "filters": {
+          "title": "Quick filter list for"
+        },
+        "actions": {
+          "generate_report": "Generate report for this year"
+        }
+      },
+      "turnover": {
+        "title": "Turnover"
+      },
+      "profit": {
+        "title": "Profits",
+        "earnings": "{amount} winnings",
+        "expenses": "{amount} of expenses"
+      },
+      "vat_due": {
+        "title": "VAT amount due"
+      },
+      "vat_recovered": {
+        "title": "VAT amount to be recovered"
+      },
+      "profit_after_salary": {
+        "title": "Profit after salary",
+        "profits": "{amount} profits",
+        "salaries": "{amount} salaries"
+      },
+      "treasury": {
+        "title": "Treasury (until {date})",
+        "base_amount": "Base: {amount}",
+        "earning_amount": "Earnings: {amount}",
+        "losses_amount": "Losses: {amount}",
+        "actions": {
+          "including_taxes_toggle": "Include taxes"
+        }
+      }
+    },
+    "table": {
+      "actions": {
+        "delete": "Delete",
+        "update": "Edit",
+        "open_file": "Open files"
+      },
+      "confirm_delete": {
+        "message": "This transaction will be permanently deleted",
+        "actions": {
+          "confirm": "Delete this transaction"
+        }
+      },
+      "recipe": {
+        "title": "Recipes"
+      },
+      "expense": {
+        "title": "Expenses"
+      },
+      "salary": {
+        "title": "Salaries"
+      }
+    }
+  },
+  "categories_page": {
+    "title": "Categories"
+  },
+  "create_category_page": {
+    "title": "Category creation"
+  },
+  "referents_page": {
+    "title": "Referents"
+  },
+  "create_referent_page": {
+    "title": "Creation of referent"
+  },
+  "create_transaction_page": {
+    "title": "Transaction creation"
+  },
+  "tools_page": {
+    "title": "Tools"
+  },
+  "stats_page": {
+    "title": "Analytics",
+    "section": {
+      "filters": {
+        "date": {
+          "title": "Year selection"
+        }
+      },
+      "charts": {
+        "overview": {
+          "title": "Overview"
+        },
+        "treasury": {
+          "title": "Treasury evolution"
+        },
+        "turnover": {
+          "title": "Turnover evolution"
+        },
+        "expenses_sharing_categories": {
+          "title": "Expenses sharing (categories)"
+        },
+        "expenses_sharing_referents": {
+          "title": "Expenses sharing (referents)"
+        },
+        "recipes_sharing_referents": {
+          "title": "Recipes sharing (referents)"
+        },
+        "recipes_sharing_categories": {
+          "title": "Recipes sharing (categories)"
+        },
+        "recipes_expenses_ratio": {
+          "title": "Recipes/expenses ratio"
+        }
+      }
+    }
+  },
+  "404_page": {
+    "title": "404",
+    "text_1": "Page not found",
+    "text_2": "This page does not exist.",
+    "actions": {
+      "home": "Go home"
+    }
+  },
+  "label": {
+    "date": "Date",
+    "close": "Close",
+    "add": "Add",
+    "cancel": "Cancel",
+    "exit": "Exit",
+    "clear_selected_dates": "Unselect dates",
+    "loading": "Loading..."
+  },
+  "unit": {
+    "quarter": "Quarter {value}",
+    "date": "YYYY/MM/DD"
+  },
+  "menu": {
+    "home": "Home",
+    "categories": "Categories",
+    "referents": "Referents",
+    "logout": "Logout",
+    "light_theme": "Light",
+    "dark_theme": "Dark",
+    "account": "Account",
+    "tools": "Tools",
+    "stats": "Analytics"
+  },
+  "language": {
+    "fr": "French",
+    "en": "English"
+  },
+  "dictionary": {
+    "expenses": "Expenses",
+    "recipes": "Recipes",
+    "salaries": "Salaries",
+    "treasury": "Treasury",
+    "turnover": "Turnover"
+  }
+}

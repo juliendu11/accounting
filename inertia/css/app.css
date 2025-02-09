@@ -1,0 +1,38 @@
+
+*:not(.q-toggle *) {
+  font-family: "Outfit", sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+body {
+
+  background-color: #F1F3F5;
+}
+
+/*.q-card,*/
+/*.q-table__card {*/
+/*  border-radius: 15px !important;*/
+/*}*/
+
+h1 {
+  font-size: 3rem!important;
+  line-height: 5rem!important;
+  letter-spacing: -.01562em!important; 
+  font-weight: 500!important;
+}
+
+h2 {
+  font-size: 2rem!important;
+  line-height: 1.5rem!important;
+  letter-spacing: normal!important;
+  font-weight: 400!important;
+}
+
+h3 {
+  font-size: 2rem!important;
+  line-height: 1.5rem!important;
+  letter-spacing: normal!important;
+  font-weight: 400!important;
+}

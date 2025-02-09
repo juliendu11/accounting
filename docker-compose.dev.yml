@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  mariaDB:
+    container_name: accounting-mariadb
+    hostname: mariadb
+    image: 'mariadb:11.8.3'
+    ports:
+      - '3306:3306'
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+  mailcatcher:
+    container_name: accounting-mail-catcher
+    image: dockage/mailcatcher:0.9.0
+    expose:
+      - '1025'
+    ports:
+      - '1080:1080'
+      - '1025:1025'
+  phpmyadmin:
+    container_name: accounting-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mariaDB
+    environment:
+      PMA_HOST: mariaDB
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 300M
+    ports:
+      - '8082:80'

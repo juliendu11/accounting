@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+echo "→ Running migrations"
+node ace migration:run --force
+
+echo "→ Starting server"
+exec node ./bin/server.js

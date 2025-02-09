@@ -1,0 +1,13 @@
+{
+  "header": {
+    "month": "Month",
+    "incomes": "Incomes",
+    "expenses": "Expenses",
+    "monthly_balance": "Monthly balance",
+    "treasury": "Treasury"
+  },
+  "footer": {
+    "totals": "Totals",
+    "yearly_balance": "Yearly balance"
+  }
+}
