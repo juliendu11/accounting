@@ -3,6 +3,8 @@
 Un simple outil pour gérer la comptabilité et tenir un cahier des comptes en tant qu’auto-entrepreneur en
 micro-entreprise.
 
+[Retrouver la démo ici](https://accounting-demo.julien-dacosta.dev/)
+
 <img src=".github/resources/images/1.png" alt="Screenshot 1" width="800">
 <img src=".github/resources/images/3.png" alt="Screenshot 2" width="800">
 <img src=".github/resources/images/3.png" alt="Screenshot 3" width="800">
