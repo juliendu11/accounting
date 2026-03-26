@@ -10,6 +10,8 @@ interface MonthlyData {
   expense: number
   balance: number
   treasury: number
+  vatCollected: number
+  vatDeductible: number
   transactions: Transaction[]
 }
 
@@ -26,6 +28,22 @@ export default class UserReportService {
     return transactions.reduce((acc, transaction) => {
       return transaction.type === TransactionType.EXPENSE
         ? acc + transaction.amountExcludingTax
+        : acc
+    }, 0)
+  }
+
+  private calculateVatCollected(transactions: Transaction[]): number {
+    return transactions.reduce((acc, transaction) => {
+      return transaction.type === TransactionType.RECIPE
+        ? acc + (transaction.amountAllTax - transaction.amountExcludingTax)
+        : acc
+    }, 0)
+  }
+
+  private calculateVatDeductible(transactions: Transaction[]): number {
+    return transactions.reduce((acc, transaction) => {
+      return transaction.type === TransactionType.EXPENSE
+        ? acc + (transaction.amountAllTax - transaction.amountExcludingTax)
         : acc
     }, 0)
   }
@@ -80,6 +98,8 @@ export default class UserReportService {
       const income = this.calculateIncome(monthTransactions)
       const expense = this.calculateExpense(monthTransactions)
       const balance = income - expense
+      const vatCollected = this.calculateVatCollected(monthTransactions)
+      const vatDeductible = this.calculateVatDeductible(monthTransactions)
 
       // Update treasury based on all transactions for this month
       monthTransactions.forEach((transaction) => {
@@ -91,6 +111,8 @@ export default class UserReportService {
         expense,
         balance,
         treasury: runningTreasury,
+        vatCollected,
+        vatDeductible,
         transactions: monthTransactions,
       })
     }
@@ -126,6 +148,14 @@ export default class UserReportService {
         value: i18n.t('report.header.treasury'),
         fontWeight: 'bold',
       },
+      {
+        value: i18n.t('report.header.vat_collected'),
+        fontWeight: 'bold',
+      },
+      {
+        value: i18n.t('report.header.vat_deductible'),
+        fontWeight: 'bold',
+      },
     ]
 
     const columns = [
@@ -154,6 +184,16 @@ export default class UserReportService {
         width: 15,
         type: Number,
       },
+      {
+        column: i18n.t('report.header.vat_collected'),
+        width: 18,
+        type: Number,
+      },
+      {
+        column: i18n.t('report.header.vat_deductible'),
+        width: 18,
+        type: Number,
+      },
     ]
 
     const transactions = await Transaction.query()
@@ -167,6 +207,8 @@ export default class UserReportService {
     // Calculate yearly totals
     const yearTotalIncome = monthlyData.reduce((acc, data) => acc + data.income, 0)
     const yearTotalExpense = monthlyData.reduce((acc, data) => acc + data.expense, 0)
+    const yearTotalVatCollected = monthlyData.reduce((acc, data) => acc + data.vatCollected, 0)
+    const yearTotalVatDeductible = monthlyData.reduce((acc, data) => acc + data.vatDeductible, 0)
     const finalTreasury = monthlyData[11]?.treasury ?? user.treasury
 
     const rows = monthlyData.map((data, index) => [
@@ -190,6 +232,14 @@ export default class UserReportService {
         type: Number,
         value: data.treasury,
       },
+      {
+        type: Number,
+        value: data.vatCollected,
+      },
+      {
+        type: Number,
+        value: data.vatDeductible,
+      },
     ])
 
     const data = [
@@ -201,6 +251,10 @@ export default class UserReportService {
         { value: i18n.t('report.footer.totals').toUpperCase(), bold: true },
         { type: Number, value: yearTotalIncome, backgroundColor: '#c6e0b4' },
         { type: Number, value: yearTotalExpense, backgroundColor: '#ff0000' },
+        {},
+        {},
+        { type: Number, value: yearTotalVatCollected, backgroundColor: '#c6e0b4' },
+        { type: Number, value: yearTotalVatDeductible, backgroundColor: '#ffc7ce' },
       ],
       [
         { value: i18n.t('report.footer.yearly_balance').toUpperCase(), bold: true },

@@ -4,7 +4,9 @@
     "incomes": "Revenus",
     "expenses": "Dépenses",
     "monthly_balance": "Solde du mois",
-    "treasury": "Trésorerie"
+    "treasury": "Trésorerie",
+    "vat_collected": "TVA collectée (due)",
+    "vat_deductible": "TVA déductible (récupérable)"
   },
   "footer": {
     "totals": "Totaux",

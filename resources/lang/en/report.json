@@ -4,7 +4,9 @@
     "incomes": "Incomes",
     "expenses": "Expenses",
     "monthly_balance": "Monthly balance",
-    "treasury": "Treasury"
+    "treasury": "Treasury",
+    "vat_collected": "VAT collected (due)",
+    "vat_deductible": "VAT deductible (recoverable)"
   },
   "footer": {
     "totals": "Totals",
