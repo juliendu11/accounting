@@ -19,11 +19,15 @@ yarn-error.log
 .fleet
 .idea
 .vscode
+
+# Others
 .claude
+.github
 
 # Platform specific
 .DS_Store
 
+# Project folders to be ignored
 uploads/*
 !uploads/.gitkeep
 
@@ -31,3 +35,5 @@ tmp/*
 !tmp/.gitkeep
 
 logs
+tests
+
