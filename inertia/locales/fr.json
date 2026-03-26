@@ -147,6 +147,24 @@
         },
         "recipes_expenses_ratio": {
           "title": "Ratio recettes/dépenses"
+        },
+        "category_evolution": {
+          "title": "Évolution tendance prix categorie",
+          "select_category": "Sélectionnez une catégorie pour afficher son évolution",
+          "average_price": "Prix moyen par transaction",
+          "trend": "Tendance"
+        },
+        "all_categories_evolution": {
+          "title": "Évolution de toutes les catégories"
+        },
+        "referent_evolution": {
+          "title": "Évolution tendance prix référent",
+          "select_referent": "Sélectionnez un référent pour afficher son évolution",
+          "average_price": "Prix moyen par transaction",
+          "trend": "Tendance"
+        },
+        "all_referents_evolution": {
+          "title": "Évolution de tous les référents"
         }
       }
     }
@@ -161,6 +179,8 @@
   },
   "label": {
     "date": "Date",
+    "date_from": "Du",
+    "date_to": "Au",
     "close": "Fermer",
     "add": "Ajouter",
     "cancel": "Annuler",
@@ -192,6 +212,12 @@
     "recipes": "Recettes",
     "salaries": "Salaires",
     "treasury": "Trésorerie",
-    "turnover": "Chiffre d'affaires"
+    "turnover": "Chiffre d'affaires",
+    "category": "Catégorie",
+    "referent": "Référent",
+    "transaction_type": "Type",
+    "expense": "Dépense",
+    "recipe": "Recette",
+    "salary": "Salaire"
   }
 }

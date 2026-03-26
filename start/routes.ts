@@ -82,6 +82,24 @@ router
     router
       .get('/stats/widget/recipesByReferent', [StatsWidgetController, 'recipesByReferent'])
       .as('stats.widget.recipesByReferent')
+    router
+      .get('/stats/widget/categoryEvolution', [StatsWidgetController, 'categoryEvolution'])
+      .as('stats.widget.categoryEvolution')
+    router
+      .get(
+        '/stats/widget/allCategoriesEvolution',
+        [StatsWidgetController, 'allCategoriesEvolution']
+      )
+      .as('stats.widget.allCategoriesEvolution')
+    router
+      .get('/stats/widget/referentEvolution', [StatsWidgetController, 'referentEvolution'])
+      .as('stats.widget.referentEvolution')
+    router
+      .get(
+        '/stats/widget/allReferentsEvolution',
+        [StatsWidgetController, 'allReferentsEvolution']
+      )
+      .as('stats.widget.allReferentsEvolution')
 
     router.get('/account', [AccountController, 'index']).as('account.index')
   })

@@ -352,6 +352,114 @@ export default class StatsWidgetController {
     }
   }
 
+  async allCategoriesEvolution({ auth, request }: HttpContext) {
+    const user = auth.getUserOrFail()
+
+    const dateFrom = request.input('date.from')
+    const dateTo = request.input('date.to')
+    const taxInclude = request.input('taxes.include', 'true') === 'true'
+    const transactionType = request.input('type', TransactionType.EXPENSE)
+
+    const fromDate = DateTime.fromFormat(dateFrom, 'yyyy/MM/dd').startOf('day')
+    const toDate = DateTime.fromFormat(dateTo, 'yyyy/MM/dd').endOf('day')
+
+    const start = fromDate.startOf('month')
+    const end = toDate.endOf('month')
+    const months: string[] = []
+    let cursor = start
+    while (cursor <= end) {
+      months.push(cursor.toFormat('yyyy-MM'))
+      cursor = cursor.plus({ months: 1 })
+    }
+
+    const transactions = await Transaction.query()
+      .where('userId', user.id)
+      .where('type', transactionType)
+      .preload('categories')
+      .andWhereBetween('date', [fromDate.toISO()!, toDate.toISO()!])
+      .orderBy('date', 'asc')
+
+    const categoryMap: Record<string, number[]> = {}
+
+    transactions.forEach((transaction) => {
+      const month = transaction.date.toFormat('yyyy-MM')
+      const monthIndex = months.indexOf(month)
+      if (monthIndex === -1) return
+
+      const amount = taxInclude ? transaction.amountAllTax : transaction.amountExcludingTax
+      const cats =
+        transaction.categories.length > 0
+          ? transaction.categories.map((c) => c.name)
+          : ['Uncategorized']
+
+      cats.forEach((cat) => {
+        if (!categoryMap[cat]) {
+          categoryMap[cat] = Array(months.length).fill(0)
+        }
+        categoryMap[cat][monthIndex] += amount
+      })
+    })
+
+    const series = Object.entries(categoryMap).map(([name, data]) => ({
+      name,
+      data: data.map((v) => Number(v.toFixed(2))),
+    }))
+
+    return { months, series }
+  }
+
+  async categoryEvolution({ auth, request }: HttpContext) {
+    const user = auth.getUserOrFail()
+
+    const dateFrom = request.input('date.from')
+    const dateTo = request.input('date.to')
+    const taxInclude = request.input('taxes.include', 'true') === 'true'
+    const categoryName = request.input('category', '')
+    const transactionType = request.input('type', TransactionType.EXPENSE)
+
+    const fromDate = DateTime.fromFormat(dateFrom, 'yyyy/MM/dd').startOf('day')
+    const toDate = DateTime.fromFormat(dateTo, 'yyyy/MM/dd').endOf('day')
+
+    // Generate the list of months between fromDate and toDate
+    const start = fromDate.startOf('month')
+    const end = toDate.endOf('month')
+    const months: string[] = []
+    let cursor = start
+    while (cursor <= end) {
+      months.push(cursor.toFormat('yyyy-MM'))
+      cursor = cursor.plus({ months: 1 })
+    }
+
+    const sumByMonth: number[] = Array(months.length).fill(0)
+    const countByMonth: number[] = Array(months.length).fill(0)
+
+    const transactions = await Transaction.query()
+      .where('userId', user.id)
+      .where('type', transactionType)
+      .preload('categories')
+      .andWhereBetween('date', [fromDate.toISO()!, toDate.toISO()!])
+      .orderBy('date', 'asc')
+
+    transactions.forEach((transaction) => {
+      const month = transaction.date.toFormat('yyyy-MM')
+      const monthIndex = months.indexOf(month)
+      if (monthIndex === -1) return
+
+      const hasCategory = transaction.categories.some((c) => c.name === categoryName)
+      if (!hasCategory) return
+
+      const amount = taxInclude ? transaction.amountAllTax : transaction.amountExcludingTax
+      sumByMonth[monthIndex] += amount
+      countByMonth[monthIndex]++
+    })
+
+    const amounts = sumByMonth.map((sum, i) =>
+      countByMonth[i] > 0 ? Number((sum / countByMonth[i]).toFixed(2)) : null
+    )
+
+    return { months, amounts }
+  }
+
   async recipesByReferent({ auth, request }: HttpContext) {
     const user = auth.getUserOrFail()
 
@@ -390,5 +498,107 @@ export default class StatsWidgetController {
       recipesByReferent: series,
       referents: referents,
     }
+  }
+
+  async referentEvolution({ auth, request }: HttpContext) {
+    const user = auth.getUserOrFail()
+
+    const dateFrom = request.input('date.from')
+    const dateTo = request.input('date.to')
+    const taxInclude = request.input('taxes.include', 'true') === 'true'
+    const referentName = request.input('referent', '')
+    const transactionType = request.input('type', TransactionType.EXPENSE)
+
+    const fromDate = DateTime.fromFormat(dateFrom, 'yyyy/MM/dd').startOf('day')
+    const toDate = DateTime.fromFormat(dateTo, 'yyyy/MM/dd').endOf('day')
+
+    const start = fromDate.startOf('month')
+    const end = toDate.endOf('month')
+    const months: string[] = []
+    let cursor = start
+    while (cursor <= end) {
+      months.push(cursor.toFormat('yyyy-MM'))
+      cursor = cursor.plus({ months: 1 })
+    }
+
+    const sumByMonth: number[] = Array(months.length).fill(0)
+    const countByMonth: number[] = Array(months.length).fill(0)
+
+    const transactions = await Transaction.query()
+      .where('userId', user.id)
+      .where('type', transactionType)
+      .preload('referent')
+      .andWhereBetween('date', [fromDate.toISO()!, toDate.toISO()!])
+      .orderBy('date', 'asc')
+
+    transactions.forEach((transaction) => {
+      const month = transaction.date.toFormat('yyyy-MM')
+      const monthIndex = months.indexOf(month)
+      if (monthIndex === -1) return
+
+      const name = transaction.referent?.name ?? 'No referent'
+      if (name !== referentName) return
+
+      const amount = taxInclude ? transaction.amountAllTax : transaction.amountExcludingTax
+      sumByMonth[monthIndex] += amount
+      countByMonth[monthIndex]++
+    })
+
+    const amounts = sumByMonth.map((sum, i) =>
+      countByMonth[i] > 0 ? Number((sum / countByMonth[i]).toFixed(2)) : null
+    )
+
+    return { months, amounts }
+  }
+
+  async allReferentsEvolution({ auth, request }: HttpContext) {
+    const user = auth.getUserOrFail()
+
+    const dateFrom = request.input('date.from')
+    const dateTo = request.input('date.to')
+    const taxInclude = request.input('taxes.include', 'true') === 'true'
+    const transactionType = request.input('type', TransactionType.EXPENSE)
+
+    const fromDate = DateTime.fromFormat(dateFrom, 'yyyy/MM/dd').startOf('day')
+    const toDate = DateTime.fromFormat(dateTo, 'yyyy/MM/dd').endOf('day')
+
+    const start = fromDate.startOf('month')
+    const end = toDate.endOf('month')
+    const months: string[] = []
+    let cursor = start
+    while (cursor <= end) {
+      months.push(cursor.toFormat('yyyy-MM'))
+      cursor = cursor.plus({ months: 1 })
+    }
+
+    const transactions = await Transaction.query()
+      .where('userId', user.id)
+      .where('type', transactionType)
+      .preload('referent')
+      .andWhereBetween('date', [fromDate.toISO()!, toDate.toISO()!])
+      .orderBy('date', 'asc')
+
+    const referentMap: Record<string, number[]> = {}
+
+    transactions.forEach((transaction) => {
+      const month = transaction.date.toFormat('yyyy-MM')
+      const monthIndex = months.indexOf(month)
+      if (monthIndex === -1) return
+
+      const amount = taxInclude ? transaction.amountAllTax : transaction.amountExcludingTax
+      const name = transaction.referent?.name ?? 'No referent'
+
+      if (!referentMap[name]) {
+        referentMap[name] = Array(months.length).fill(0)
+      }
+      referentMap[name][monthIndex] += amount
+    })
+
+    const series = Object.entries(referentMap).map(([name, data]) => ({
+      name,
+      data: data.map((v) => Number(v.toFixed(2))),
+    }))
+
+    return { months, series }
   }
 }

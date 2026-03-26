@@ -8,6 +8,8 @@ micro-entreprise.
 <img src=".github/resources/images/1.png" alt="Screenshot 1" width="800">
 <img src=".github/resources/images/3.png" alt="Screenshot 2" width="800">
 <img src=".github/resources/images/3.png" alt="Screenshot 3" width="800">
+<img src=".github/resources/images/stats-1.png" alt="Screenshot Stats 1" width="800">
+<img src=".github/resources/images/stats-2.png" alt="Screenshot Stats 2" width="800">
 
 ## TODO:
 
@@ -25,6 +27,8 @@ micro-entreprise.
 - Visuel rapide sur les finances (trésorerie, bénéfices, chiffre d'affaires, etc.)
 - Gestion de la TVA (si applicable)
 - Charts et graphiques pour visualiser les données financières
+  Visuel rapide sur les tendances des prix par catégories ou référents — permet de voir, par exemple, si un des services
+  que vous payez a augmenté dans le temps
 
 ## Technologies utilisées
 

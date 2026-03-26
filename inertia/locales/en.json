@@ -146,6 +146,24 @@
         },
         "recipes_expenses_ratio": {
           "title": "Recipes/expenses ratio"
+        },
+        "category_evolution": {
+          "title": "Price category trend evolution",
+          "select_category": "Select a category to display its evolution",
+          "average_price": "Average price per transaction",
+          "trend": "Trend"
+        },
+        "all_categories_evolution": {
+          "title": "All categories evolution"
+        },
+        "referent_evolution": {
+          "title": "Price referent trend evolution",
+          "select_referent": "Select a referent to display its evolution",
+          "average_price": "Average price per transaction",
+          "trend": "Trend"
+        },
+        "all_referents_evolution": {
+          "title": "All referents evolution"
         }
       }
     }
@@ -160,6 +178,8 @@
   },
   "label": {
     "date": "Date",
+    "date_from": "From",
+    "date_to": "To",
     "close": "Close",
     "add": "Add",
     "cancel": "Cancel",
@@ -191,6 +211,12 @@
     "recipes": "Recipes",
     "salaries": "Salaries",
     "treasury": "Treasury",
-    "turnover": "Turnover"
+    "turnover": "Turnover",
+    "category": "Category",
+    "referent": "Referent",
+    "transaction_type": "Type",
+    "expense": "Expense",
+    "recipe": "Recipe",
+    "salary": "Salary"
   }
 }
