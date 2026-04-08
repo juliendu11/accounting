@@ -13,8 +13,8 @@
       :bordered="!$q.dark.isActive"
       :width="200"
       :mini="miniState"
-      @mouseenter="miniState = false"
-      @mouseleave="miniState = true"
+      @mouseenter="onMouseEnter"
+      @mouseleave="onMouseLeave"
     >
       <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
         <q-list padding>
@@ -137,13 +137,14 @@ import { useI18n } from 'vue-i18n'
 import { useTheme } from '~/composables/useTheme'
 import { useQuasar } from 'quasar'
 import dayjs from 'dayjs'
+import { PageProps } from '#config/inertia'
 
 const { t, locale } = useI18n()
 
 const leftDrawerOpen = ref(false)
 const miniState = ref(true)
 const { setTheme, updateTheme, isDark } = useTheme()
-const page = usePage()
+const page = usePage<PageProps>()
 const $q = useQuasar()
 
 onMounted(() => {
@@ -180,5 +181,17 @@ const toggleLeftDrawer = () => {
 
 const onClickLogout = () => {
   router.delete('/login')
+}
+
+const onMouseEnter = () => {
+  if (page.props.currentPath.includes('transaction/create')) return
+
+  miniState.value = false
+}
+
+const onMouseLeave = () => {
+  if (page.props.currentPath.includes('transaction/create')) return
+
+  miniState.value = true
 }
 </script>

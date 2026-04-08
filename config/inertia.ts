@@ -13,6 +13,7 @@ const inertiaConfig = defineConfig({
    */
   sharedData: {
     user: (ctx) => ctx.auth?.user,
+    currentPath: (ctx) => ctx.request.url(),
   },
 
   /**
@@ -35,6 +36,7 @@ export type CustomProps = {
       message: string
     }
   }
+  currentPath: string
 }
 
 export type PageProps = InferSharedProps<typeof inertiaConfig> & CustomProps
