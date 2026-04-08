@@ -150,9 +150,10 @@ import { computed, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useQuasar } from 'quasar'
 
-defineProps<{
+const props = defineProps<{
   categories: any
   referents: any
+  returnTo: string
 }>()
 
 const { t } = useI18n()
@@ -197,6 +198,7 @@ const onClickSubmit = () => {
     .transform((data) => ({
       ...data,
       categories: data.categories?.map((category) => category.value) ?? [],
+      returnTo: props.returnTo,
     }))
     .post('/transaction')
 }

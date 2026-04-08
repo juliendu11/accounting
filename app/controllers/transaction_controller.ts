@@ -10,15 +10,17 @@ import TransactionDocument from '#models/transaction_document'
 import { DateTime } from 'luxon'
 
 export default class TransactionController {
-  async create({ inertia, auth }: HttpContext) {
+  async create({ inertia, auth, request }: HttpContext) {
     const user = auth.getUserOrFail()
 
     const categories = await Category.query().where('userId', user.id)
     const referents = await Referent.query().where('userId', user.id)
+    const returnTo = request.input('returnTo', '/')
 
     return inertia.render('transaction/create', {
       categories,
       referents,
+      returnTo,
     })
   }
 
@@ -86,7 +88,9 @@ export default class TransactionController {
       await this.saveDocuments(payload.documents, user, newTransaction)
     }
 
-    return response.redirect().toRoute('home.index')
+    const returnTo = request.input('returnTo', '/')
+    const safeReturnTo = returnTo.startsWith('/') ? returnTo : '/'
+    return response.redirect(safeReturnTo)
   }
 
   async destroy({ params, response, auth, session, i18n }: HttpContext) {

@@ -369,7 +369,11 @@ const getDateSelectedInLiteral = computed(() => {
 })
 
 const onClickAddItem = () => {
-  router.get('/transaction/create')
+  const formFormatted = dayjs(selectedDate.value.from, 'YYYY/MM/DD').format('YYYY-MM-DD')
+  const toFormatted = dayjs(selectedDate.value.to, 'YYYY/MM/DD').format('YYYY-MM-DD')
+  router.get('/transaction/create', {
+    returnTo: `/?date.from=${formFormatted}&date.to=${toFormatted}`,
+  })
 }
 
 const loadTransactions = (from: Date | string, to: Date | string) => {
