@@ -57,7 +57,6 @@ createInertiaApp({
   },
 
   setup({ el, App, props, plugin }) {
-    console.log(props?.initialPage?.props)
     createApp({
       render: () => h(App, props),
       setup: () => {
