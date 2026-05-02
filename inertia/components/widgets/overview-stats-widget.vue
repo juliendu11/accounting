@@ -9,11 +9,18 @@
     </q-banner>
   </div>
   <apexchart
-    v-else-if="hasData"
+    v-else-if="hasData && !isMobile"
     type="line"
     height="350"
     :options="chartOptions"
     :series="series"
+  ></apexchart>
+  <apexchart
+    v-else-if="hasData && isMobile"
+    type="bar"
+    height="320"
+    :options="mobileChartOptions"
+    :series="mobileSeries"
   ></apexchart>
 </template>
 
@@ -24,6 +31,7 @@ import { cssVariable } from '~/helpers/document'
 import dayjs from 'dayjs'
 import { useI18n } from 'vue-i18n'
 import { useTheme } from '~/composables/useTheme'
+import { useQuasar } from 'quasar'
 
 type State = {
   expensesByMonth: number[]
@@ -35,6 +43,9 @@ type State = {
 
 const { t } = useI18n()
 const { isDark } = useTheme()
+const $q = useQuasar()
+
+const isMobile = computed(() => $q.screen.lt.md)
 
 const props = defineProps<{
   year: number
@@ -206,6 +217,82 @@ const chartOptions = computed(() => ({
   legend: {
     horizontalAlign: 'center',
     offsetX: 40,
+  },
+}))
+
+const mobileSeries = computed(() => [
+  {
+    name: t('dictionary.expenses'),
+    data: state.value.expensesByMonth,
+  },
+  {
+    name: t('dictionary.recipes'),
+    data: state.value.recipesByMonth,
+  },
+  {
+    name: t('dictionary.salaries'),
+    data: state.value.salariesByMonth,
+  },
+  {
+    name: t('dictionary.treasury'),
+    data: state.value.treasuryByMonth,
+  },
+])
+
+const mobileChartOptions = computed(() => ({
+  chart: {
+    type: 'bar',
+    height: 320,
+    stacked: false,
+    toolbar: { show: false },
+    background: 'transparent',
+    zoom: { enabled: false },
+  },
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      columnWidth: '70%',
+      borderRadius: 2,
+    },
+  },
+  dataLabels: { enabled: false },
+  stroke: { show: true, width: 2, colors: ['transparent'] },
+  xaxis: {
+    categories: state.value.categories,
+    labels: {
+      formatter: (val: unknown) => {
+        if (typeof val !== 'string') return String(val)
+        const match = val.match(/^\d{4}-\d{2}$/)
+        if (!match) return val
+        const d = dayjs(`${val}-01`)
+        return d.isValid() ? d.format('MMM') : val
+      },
+    },
+  },
+  theme: {
+    mode: isDark.value ? 'dark' : 'light',
+  },
+  colors: [
+    cssVariable('--q-negative'),
+    cssVariable('--q-primary'),
+    cssVariable('--q-secondary'),
+    cssVariable('--q-info'),
+  ],
+  yaxis: {
+    labels: {
+      formatter: (val: number) => {
+        if (Math.abs(val) >= 1000) return `${(val / 1000).toFixed(0)}k`
+        return String(Math.round(val))
+      },
+    },
+  },
+  tooltip: {
+    shared: true,
+    intersect: false,
+  },
+  legend: {
+    position: 'bottom',
+    horizontalAlign: 'center',
   },
 }))
 </script>

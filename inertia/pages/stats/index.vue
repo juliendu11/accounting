@@ -15,8 +15,8 @@
           <div v-if="tab === 'treasury'">
             <div class="row q-col-gutter-md items-stretch">
               <div class="col-12">
-                <div class="row items-center">
-                  <div class="col-2">
+                <div class="row items-center q-gutter-md">
+                  <div class="col-12 col-md-2">
                     <BaseSelect
                       v-model="yearSelected"
                       :label="t('stats_page.section.filters.date.title')"

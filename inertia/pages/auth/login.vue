@@ -4,7 +4,7 @@
   <q-page class="full-height full-width">
     <div class="container">
       <h1 class="text-center">{{ t('login_page.title') }}</h1>
-      <q-card flat bordered>
+      <q-card flat :bordered="!isMobile" :style="isMobile ? 'background-color: transparent' : ''">
         <q-card-section class="q-pa-lg">
           <form @submit.prevent="form.post('/login')">
             <div class="row q-col-gutter-md">
@@ -54,11 +54,13 @@
 <script lang="ts" setup>
 import { Head, useForm } from '@inertiajs/vue3'
 import BaseInput from '~/components/base-input.vue'
-import { watch } from 'vue'
+import { computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AuthPageBottom from '~/components/auth-page-bottom.vue'
+import { useQuasar } from 'quasar'
 
 const { t } = useI18n()
+const $q = useQuasar()
 
 defineProps<{
   email?: string
@@ -83,6 +85,8 @@ watch(
     form.clearErrors('password')
   }
 )
+
+const isMobile = computed(() => $q.screen.lt.md)
 </script>
 
 <style scoped>

@@ -26,10 +26,25 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
+        id: build
         with:
           context: .
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
+
+      - name: Wait for image to be pullable on registry
+        run: |
+          IMAGE="ghcr.io/juliendu11/accounting:latest@${{ steps.build.outputs.digest }}"
+          echo "Waiting for $IMAGE to be available..."
+          for i in $(seq 1 12); do
+            if docker buildx imagetools inspect "$IMAGE" > /dev/null 2>&1; then
+              echo "Image confirmed available on registry."
+              exit 0
+            fi
+            echo "Attempt $i/12: not yet available, retrying in 10s..."
+            sleep 10
+          done
+          echo "Image did not become available in time, deploying anyway..."
 
       - name: Notify Dokploy to redeploy
         run: |

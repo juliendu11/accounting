@@ -11,8 +11,8 @@
           />
         </div>
 
-        <div class="row q-col-gutter-x-sm full-width q-mt-lg">
-          <div class="col-2 q-px-none">
+        <div class="row q-col-gutter-sm full-width q-mt-lg">
+          <div class="col-6 col-md-2 q-px-none">
             <BaseInput v-model="filter.text" label="Recherche" dense>
               <template #prepend>
                 <q-icon name="search" class="cursor-pointer" />
@@ -20,7 +20,7 @@
             </BaseInput>
           </div>
 
-          <div class="col-2">
+          <div class="col-6 col-md-2">
             <BaseSelect
               v-model="filter.referents"
               label="Référent"
@@ -31,7 +31,7 @@
             />
           </div>
 
-          <div class="col-2">
+          <div class="col-6 col-md-2 q-px-none">
             <BaseSelect
               v-model="filter.categories"
               label="Catégories"
@@ -44,7 +44,7 @@
             />
           </div>
 
-          <div class="col-2">
+          <div class="col-6 col-md-2">
             <BaseInput :model-value="getDateSelectedInLiteral" :label="t('label.date')" dense>
               <q-popup-proxy transition-show="scale" transition-hide="scale">
                 <q-date v-model="filter.date" range landscape>
