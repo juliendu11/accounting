@@ -2696,7 +2696,7 @@ export default class DemoSeeder extends BaseSeeder {
       },
       {
         invoice: inv('MUT', 1, 1),
-        date: rd(1, 15),
+        date: rd(0, 15),
         amountAllTax: 54,
         amountExcludingTax: ht(54),
         currency: 'EUR',
@@ -2707,7 +2707,7 @@ export default class DemoSeeder extends BaseSeeder {
       },
       {
         invoice: inv('CAR', 1, 1),
-        date: rd(1, 6),
+        date: rd(0, 6),
         amountAllTax: 93.2,
         amountExcludingTax: ht(93.2, 5.5),
         currency: 'EUR',
@@ -2718,7 +2718,7 @@ export default class DemoSeeder extends BaseSeeder {
       },
       {
         invoice: inv('CAR', 1, 2),
-        date: rd(1, 20),
+        date: rd(0, 20),
         amountAllTax: 81.6,
         amountExcludingTax: ht(81.6, 5.5),
         currency: 'EUR',
@@ -2729,7 +2729,7 @@ export default class DemoSeeder extends BaseSeeder {
       },
       {
         invoice: inv('CPT', 1, 1),
-        date: rd(1, 14),
+        date: rd(0, 14),
         amountAllTax: 1800,
         amountExcludingTax: ht(1800),
         currency: 'EUR',
@@ -2740,7 +2740,7 @@ export default class DemoSeeder extends BaseSeeder {
       },
       {
         invoice: inv('OAI', 1, 1),
-        date: rd(1, 1),
+        date: rd(0, 1),
         amountAllTax: 24,
         amountExcludingTax: ht(24),
         currency: 'EUR',
@@ -2751,7 +2751,7 @@ export default class DemoSeeder extends BaseSeeder {
       },
       {
         invoice: inv('SNC', 1, 1),
-        date: rd(1, 10),
+        date: rd(0, 10),
         amountAllTax: 72,
         amountExcludingTax: ht(72, 10),
         currency: 'EUR',
@@ -2762,7 +2762,7 @@ export default class DemoSeeder extends BaseSeeder {
       },
       {
         invoice: inv('XCM', 1, 1),
-        date: rd(1, 28),
+        date: rd(0, 28),
         amountAllTax: 350,
         amountExcludingTax: ht(350),
         currency: 'EUR',
@@ -2773,7 +2773,7 @@ export default class DemoSeeder extends BaseSeeder {
       },
       {
         invoice: inv('CRS', 1, 1),
-        date: rd(1, 18),
+        date: rd(0, 18),
         amountAllTax: 149,
         amountExcludingTax: ht(149),
         currency: 'EUR',
